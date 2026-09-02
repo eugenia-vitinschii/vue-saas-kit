@@ -1,6 +1,6 @@
 
-
-// import '@/assets/sass/app.sass'
+import 'modular-ui-kit-vue/dist/modular-ui-kit-vue.css'
+import './lib/styles/app.sass'
 
 import { createApp } from 'vue'
 // import { createPinia } from 'pinia'

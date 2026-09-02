@@ -1,0 +1,80 @@
+/* ADMIN LAYOUT */
+@use '../abstracts/mixins' as *
+@use '../abstracts/tokens' as *
+
+// layot
+.vsk-layout
+   display: flex
+   width: 100%
+   min-height: 100vh
+
+// sidebar
+.vsk-sidebar
+   width: 230px
+   display: flex
+   flex-direction: column
+   flex-shrink: 0
+   transition: $muk-transition
+   &--collapsed
+      width: 72px
+   &__header
+      height: 64px
+      display: flex
+      align-items: center
+      padding: 0px 16px
+   &__nav
+      flex: 1
+      ul
+         display: flex
+         flex-direction: column
+         gap: 4px
+      a
+         display: flex
+         align-items: center
+         gap: 10px
+         padding: 5px 12px
+
+// wrapper
+.vsk-main-wrapper
+   flex: 1
+   display: flex
+   flex-direction: column
+   min-width: none
+
+// header
+.vsk-header
+   height: 65px
+   display: flex
+   align-items: center
+   justify-content: space-between
+   padding: 0px 20px
+   flex-shrink: 0
+   &__left, &__right
+      display: flex
+      align-items: center
+      gap: 10px
+
+//user profile
+.vsk-user-profile
+   display: flex
+   align-items: center
+   gap: 8px
+   &__avatar
+      img
+         width: 35px
+         height: 35px
+         border-radius: 50%
+         object-fit: cover
+   &__info
+      display: flex
+      flex-direction: column
+      p, a, span
+         margin: 0
+
+//content
+.vsk-content
+   flex: 1
+   padding: 20px
+   overflow-y: auto
+
+  

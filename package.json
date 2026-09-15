@@ -17,6 +17,7 @@
     "@types/node": "^24.13.3",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/tsconfig": "^0.9.1",
+    "chart.js": "^4.5.1",
     "sass": "^1.103.1",
     "typescript": "~6.0.2",
     "vite": "^8.2.2",

@@ -24,10 +24,10 @@ const user = ref<UserProfile>({
 })
 
 const menu = ref<MenuItem[]>([
-  { id: '1', icon: '📊', label: 'Dashboard', to: '/' },
-  { id: '2', icon: '📦', label: 'Products', to: '/products', badge: '128' },
-  { id: '3', icon: '🛒', label: 'Orders', to: '/orders', badge: '5' },
-  { id: '4', icon: '👥', label: 'Customers', to: '/customers' },
-  { id: '5', icon: '⚙️', label: 'Settings', to: '/settings', badge: 'NEW' }
+  { id: '1', label: 'Dashboard', to: '/' },
+  { id: '2', label: 'Products', to: '/products', badge: '128' },
+  { id: '3', label: 'Orders', to: '/orders', badge: '5' },
+  { id: '4', label: 'Customers', to: '/customers' },
+  { id: '5', label: 'Settings', to: '/settings', badge: 'NEW' }
 ])
 </script>

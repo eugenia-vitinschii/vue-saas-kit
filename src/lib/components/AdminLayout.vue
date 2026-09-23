@@ -17,7 +17,7 @@
                   <a :href="item.to || '#'" >
                      <muk-text v-if="item.icon" as="span">{{ item.icon }}</muk-text>
                      <muk-text v-if="!isCollapsed" as="span">{{ item.label }} </muk-text>
-                     <muk-text v-if="item.badge && !isCollapsed" as="span">{{ item.badge  }} </muk-text>
+                     <muk-text variant="primary" type="muk-caption" v-if="item.badge && !isCollapsed" as="span">[{{ item.badge  }}] </muk-text>
                   </a>
                </li>
             </ul>

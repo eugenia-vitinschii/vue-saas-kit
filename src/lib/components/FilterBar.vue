@@ -1,5 +1,5 @@
 <template>
-<div class="vsk-filter-bar">
+<div class="vsk-filter-bar muk-section">
    <div class="vsk-filter-bar__filters">
       <div v-if="$slots.search" class="vsk-filter-bar__search">
          <slot name="search"></slot>

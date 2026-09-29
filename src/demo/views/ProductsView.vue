@@ -1,6 +1,10 @@
 <template>
 <div>
-    <page-header title="Products" description="Manage your store products and inventory" :breadcrumbs="[{ label: 'Dashboard', to: '/'}, { label: 'Products'}]">
+    <page-header 
+      title="Products" 
+      description="Manage your store products and inventory" 
+      :breadcrumbs="[{ label: 'Dashboard', to: '/'}, { label: 'Products'}]"
+    >
       <template #actions>
          <muk-icon-button  variant="secondary" size="md">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M480-480ZM202-65l-56-57 118-118h-90v-80h226v226h-80v-89L202-65Zm278-15v-80h240v-440H520v-200H240v400h-80v-400q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H480Z"/></svg>
@@ -12,6 +16,30 @@
           </muk-icon-button>
       </template>
     </page-header>
+    <filter-bar>
+      <template #search>
+        <muk-input v-model="searchQuery" placegolder="Seearch products by name..."/>
+      </template>
+      <template #filters>
+        <muk-select v-model="selectedCategpry" :options="categoryOptions" placeholder="Category"/>
+        <muk-select v-model="selectedStatus" :options="statusOptions" placeholder="Status"/>
+      </template>
+      <template #reset>
+        <muk-icon-button v-if="hasActiveFilters" variant="ghost" size="lg" @click="resetFilters">
+          <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="m636-178-56-57 84-85-84-85 56-57 85 86 85-86 56 57-84 85 84 85-56 57-85-86-85 86Zm-276 18q-17 0-28.5-11.5T320-200v-240L88-736q-5-5-6.5-11.5T80-760q0-15 11-27.5t29-12.5h560q18 0 29 12.5t11 27.5q0 6-1.5 12.5T712-736L480-440v240q0 17-11.5 28.5T440-160h-80Zm40-308 198-252H202l198 252Zm0 0Z"/></svg>
+        </muk-icon-button>
+      </template>
+      <template #actions>
+        <muk-icon-button variant="secondary" size="sm">
+          <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="M480-480ZM202-65l-56-57 118-118h-90v-80h226v226h-80v-89L202-65Zm278-15v-80h240v-440H520v-200H240v400h-80v-400q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H480Z"/></svg>
+           <template #text>Export CSV</template>
+        </muk-icon-button>
+         <muk-icon-button variant="primary" size="sm" @click="handleCreateProduct">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+          <template #text>Add Product</template>
+        </muk-icon-button>
+      </template>
+    </filter-bar>
     <data-table :columns="productColumns" :items="productsList" pagination>
       <template #cell-status="{value}">
         <muk-badge :text="value" size="sm" :variant="getStatusVariant(value)">
@@ -40,13 +68,50 @@
 
 <script setup lang="ts">
 /* VUE */
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 /* COMPONENTS  */
-import {  MukIconButton, MukPagination, MukBadge } from 'modular-ui-kit-vue';
+import {  MukIconButton, MukPagination, MukBadge, MukInput, MukSelect } from 'modular-ui-kit-vue';
 import PageHeader from '../../lib/components/PageHeader.vue';
 import DataTable from '../../lib/components/DataTable.vue';
+import FilterBar from '../../lib/components/FilterBar.vue';
 
+/* FILTER BAR */
+const searchQuery = ref('')
+const selectedCategpry = ref('')
+const selectedStatus = ref('')
+
+
+const categoryOptions = [
+  { value: '', label: 'All Categories' },
+  { value: 'electronics', label: 'Electronics' },
+  { value: 'clothing', label: 'Clothing' },
+  { value: 'software', label: 'Software' }
+]
+
+const statusOptions = [
+  { value: '', label: 'All Statuses' },
+  { value: 'in_stock', label: 'In Stock' },
+  { value: 'low_stock', label: 'Low Stock' },
+  { value: 'out_of_stock', label: 'Out of Stock' }
+]
+
+const hasActiveFilters = computed(() => {
+  return searchQuery.value !== '' || selectedCategpry.value !== '' || selectedStatus.value !== ''
+})
+
+
+const resetFilters = () => {
+  searchQuery.value = ''
+  selectedCategpry.value = ''
+  selectedStatus.value = ''
+}
+
+const handleCreateProduct = () => {
+  console.log('Open create product modal')
+}
+
+/* DATA TABLE */
 export interface ProductItem {
   id: string
   name: string
@@ -56,7 +121,6 @@ export interface ProductItem {
   stock: number
   status: 'In Stock' | 'Low Stock' | 'Out of Stock'
 }
-
 const productColumns = [
   { key: 'name', label: 'Product Name' },
   { key: 'sku', label: 'SKU' },

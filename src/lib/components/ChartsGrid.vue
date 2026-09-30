@@ -9,6 +9,7 @@
 <script setup lang="ts">
 /* COMPONENTS  */
 import { MukChart } from 'modular-ui-kit-vue';
+
 /* CHART JS */
 import type { ChartData, ChartOptions, ChartType } from 'chart.js';
 

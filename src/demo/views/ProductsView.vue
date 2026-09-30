@@ -40,7 +40,15 @@
         </muk-icon-button>
       </template>
     </filter-bar>
-    <data-table :columns="productColumns" :items="productsList" pagination>
+    <div class="demo-controls muk-section">
+      <muk-text as="h4" type="muk-subheading">Simulate Data Flow State</muk-text>
+      <muk-radio v-model="currentState" value="data" label="Success Data"/>
+      <muk-radio v-model="currentState" value="loading" label="Loading"/>
+      <muk-radio v-model="currentState" value="error" label="Error"/>
+      <muk-radio v-model="currentState" value="empty" label="Empty"/>
+    </div>
+    <data-wrapper :loading="isLoading" :error="isError" :items="currentItems" @retry="currentState = 'data'">
+      <data-table :columns="productColumns" :items="productsList" pagination>
       <template #cell-status="{value}">
         <muk-badge :text="value" size="sm" :variant="getStatusVariant(value)">
           <template #icon>
@@ -62,7 +70,9 @@
       <template #pagination>
          <muk-pagination :total-pages="13" :page="currentPage" @change="currentPage = $event" />
       </template>
-    </data-table>
+      </data-table>
+    </data-wrapper>
+
 </div>
 </template>
 
@@ -71,11 +81,21 @@
 import { ref, computed } from 'vue';
 
 /* COMPONENTS  */
-import {  MukIconButton, MukPagination, MukBadge, MukInput, MukSelect } from 'modular-ui-kit-vue';
+import {  MukIconButton, MukPagination, MukBadge, MukInput, MukSelect, MukRadio, MukText } from 'modular-ui-kit-vue';
 import PageHeader from '../../lib/components/PageHeader.vue';
 import DataTable from '../../lib/components/DataTable.vue';
 import FilterBar from '../../lib/components/FilterBar.vue';
+import DataWrapper from '../../lib/components/DataWrapper.vue';
 
+
+/* demo */
+const currentState = ref<'data' | 'loading'| 'error' | 'empty'>('data')
+
+const isLoading = computed(() => currentState.value === 'loading')
+const isError= computed(() => currentState.value === 'error')
+const currentItems = computed(() => { if (currentState.value === 'empty') return []
+  return productsList.value
+})
 /* FILTER BAR */
 const searchQuery = ref('')
 const selectedCategpry = ref('')

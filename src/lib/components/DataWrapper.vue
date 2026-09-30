@@ -2,7 +2,7 @@
 <div class="vsk-data-wrapper">
    <div v-if="loading" class="vsk-data-wrapper__loading">
       <slot name="sleleton">
-         <muk-skeleton width="100" height="100"/>
+         <muk-skeleton width="100" height="100vh"/>
       </slot>
    </div>
    <div v-else-if="error" class="vsk-data-wrapper__error">

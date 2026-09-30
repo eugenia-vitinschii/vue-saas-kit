@@ -1,6 +1,8 @@
 <template>
 <div>
-    <page-header title="Dashboard" description="Overview of your store performance, sales metrics, and key activity.">
+    <page-header 
+      title="Dashboard" 
+      description="Overview of your store performance, sales metrics, and key activity.">
     </page-header>
    <stats-grid :items="metricsData">
     <template #icon-revenue><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M200-120q-33 0-56.5-23.5T120-200v-640h80v640h640v80H200Zm40-120v-360h160v360H240Zm200 0v-560h160v560H440Zm200 0v-200h160v200H640Z"/></svg></template>
@@ -10,6 +12,7 @@
     <template #icon-pending><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93ZM320-320v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T663-540L443-320H320Zm300-263-37-37 37 37ZM380-380h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z"/></svg></template>
     <template #icon-conversion><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M280-160q-33 0-56.5-23.5T200-240v-370L40-800h760q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H280Zm-68-560 68 80v400h520v-480H212Zm328 460 56-56-44-44h168v-80H360l180 180ZM360-520h360L540-700l-56 56 44 44H360v80Zm146 40Z"/></svg></template>
    </stats-grid>
+
     <charts-grid :items="chartsData"/>
 </div>
 </template>
@@ -68,6 +71,7 @@ const metricsData = ref<StatItem[]>([
     id: 'pending',
     title: 'Pending Orders',
     value: '18',
+    changePeriod: 'Since yesterday',
     loading: true 
   },
   {

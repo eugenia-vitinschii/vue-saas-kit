@@ -1,11 +1,12 @@
 <template>
-<div class="vsk-data-wrapper">
-   <div v-if="loading" class="vsk-data-wrapper__loading">
-      <slot name="sleleton">
+<div class="vsk-data-wrapper muk-section">
+   <Transition name="fade" mode="out-in">
+   <div v-if="loading" key="loading" class="vsk-data-wrapper__loading">
+      <slot name="skeleton">
          <muk-skeleton width="100" height="100vh"/>
       </slot>
    </div>
-   <div v-else-if="error" class="vsk-data-wrapper__error">
+   <div v-else-if="error" key="error" class="vsk-data-wrapper__error">
       <slot name="error">
          <muk-error-state>
             <template #action>
@@ -14,14 +15,15 @@
          </muk-error-state>
       </slot>
    </div>
-   <div v-else-if="!items || items.length === 0" class="vsk-data-wrapper__empty">
+   <div v-else-if="!items || items.length === 0" key="empty" class="vsk-data-wrapper__empty">
       <slot name="empty">
          <muk-empty-state/>
       </slot>
    </div>
-   <template v-else>
+   <template v-else key="content">
       <slot :items="items"></slot>
    </template>
+</Transition>
 </div>
 </template>
 

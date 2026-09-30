@@ -1,5 +1,5 @@
 <template>
-<div class="vsk-data-table muk-table-wrapper muk-section">
+<div class="vsk-data-table muk-table-wrapper">
    <table class="muk-table">
       <thead>
          <tr>

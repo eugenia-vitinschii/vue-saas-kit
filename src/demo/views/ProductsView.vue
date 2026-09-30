@@ -48,6 +48,9 @@
       <muk-radio v-model="currentState" value="empty" label="Empty"/>
     </div>
     <data-wrapper :loading="isLoading" :error="isError" :items="currentItems" @retry="currentState = 'data'">
+      <template #skeleton>
+        <data-table-skeleton :rows="9" :buttons="2" :columns="5" />
+      </template>
       <data-table :columns="productColumns" :items="productsList" pagination>
       <template #cell-status="{value}">
         <muk-badge :text="value" size="sm" :variant="getStatusVariant(value)">
@@ -86,7 +89,7 @@ import PageHeader from '../../lib/components/PageHeader.vue';
 import DataTable from '../../lib/components/DataTable.vue';
 import FilterBar from '../../lib/components/FilterBar.vue';
 import DataWrapper from '../../lib/components/DataWrapper.vue';
-
+import DataTableSkeleton from '../../lib/components/Skeletons/DataTableSkeleton.vue';
 
 /* demo */
 const currentState = ref<'data' | 'loading'| 'error' | 'empty'>('data')

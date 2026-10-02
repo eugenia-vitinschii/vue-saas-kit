@@ -1,18 +1,18 @@
 {
   "name": "vue-saas-kit",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "type": "module",
   "description": "Specialized Vue 3 SaaS dashboard UI kit built on top of modular-ui-kit-vue",
-  "main": "./dist/vue-saas-kit.cjs.js",
+  "main": "./dist/vue-saas-kit.umd.js",
   "module": "./dist/vue-saas-kit.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vue-saas-kit.es.js",
-      "require": "./dist/vue-saas-kit.cjs.js",
+      "require": "./dist/vue-saas-kit.umd.js",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/vue-saas-kit.css"
   },
   "files": [
     "dist"

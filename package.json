@@ -1,27 +1,55 @@
 {
   "name": "vue-saas-kit",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0-beta.1",
   "type": "module",
+  "description": "Specialized Vue 3 SaaS dashboard UI kit built on top of modular-ui-kit-vue",
+  "main": "./dist/vue-saas-kit.cjs.js",
+  "module": "./dist/vue-saas-kit.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-saas-kit.es.js",
+      "require": "./dist/vue-saas-kit.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"
   },
-  "dependencies": {
-    "modular-ui-kit-vue": "^2.7.1",
-    "vue": "^3.5.41",
-    "vue-router": "^4.6.4"
+  "keywords": [
+    "vue",
+    "vue3",
+    "saas",
+    "dashboard",
+    "ui-kit",
+    "components",
+    "data-table",
+    "filter-bar",
+    "admin-layout"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.5.0",
+    "modular-ui-kit-vue": "^2.7.0"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/tsconfig": "^0.9.1",
     "chart.js": "^4.5.1",
+    "modular-ui-kit-vue": "^2.7.1",
     "sass": "^1.103.1",
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
     "vite-plugin-dts": "^5.0.3",
+    "vue": "^3.5.41",
+    "vue-router": "^4.6.4",
     "vue-tsc": "^3.3.11"
   }
 }

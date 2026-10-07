@@ -1,7 +1,7 @@
 <template>
 <div class="vsk-page-header">
    <div class="vsk-page-header__breadcrumbs">
-      <slot name="bradrumbs">
+      <slot name="breadcrumbs">
          <nav class="muk-breadcrumbs" v-if="breadcrumbs && breadcrumbs.length">
             <ul class="muk-breadcrumbs__list">
             <li class="muk-breadcrumbs__item"  v-for="(crumb, index) in breadcrumbs" :key="index">
@@ -31,7 +31,7 @@
 /* COMPONENTS */
 import { MukText} from 'modular-ui-kit-vue';
 
-export interface BreacrumbItem{
+export interface BreadcrumbItem{
    label: string
    to?: string
 }
@@ -39,6 +39,6 @@ export interface BreacrumbItem{
 defineProps<{
    title?: string
    description?: string
-   breadcrumbs?: BreacrumbItem[]
+   breadcrumbs?: BreadcrumbItem[]
 }>()
 </script>

@@ -14,7 +14,7 @@ Install
 npm i vue-saas-kit
 ```
 
-### `AdminLayout`
+### ⭐️`AdminLayout`⭐️
 
 The root application shell for your SaaS dashboard. It features a collapsible sidebar with automated navigation rendering, a sticky top header with built-in collapse triggers and user profile support, and flexible content slotting.
 
@@ -67,3 +67,39 @@ const props = withDefaults(
 | `nav` | Overrides the default menu list rendering. |
 | `header-left` | Custom components (breadcrumbs, quick actions) next to the toggle button. |
 | `default` | Main layout content slot for your page views. |
+
+
+### ⭐️`PageHeader`⭐️
+
+A standardized header component for SaaS page views. It handles breadcrumb navigation, main page titling, subtext/descriptions, and action buttons layout seamlessly.
+
+#### Features & Highlights
+- **Breadcrumbs Integration:** Automatically renders breadcrumb links with custom separators or accepts custom markup via slots.
+- **Title & Description:** Renders main heading with muted subtext using MUK text primitives.
+- **Action Area:** Dedicated right-aligned slot for page actions (e.g., "Create Item", "Export CSV", "Filters").
+
+#### Type Definitions
+
+```ts
+export interface BreadcrumbItem {
+  label: string
+  to?: string
+}
+```
+#### Props
+
+```ts
+defineProps<{
+  title?: string
+  description?: string
+  breadcrumbs?: BreadcrumbItem[]
+}>()
+```
+
+#### Slots
+
+| Slot Name | Description |
+| :--- | :--- |
+| `breadcrumbs` | Overrides the default breadcrumb navigation list. |
+| `title` | Overrides the main title and description block. |
+| `actions` | Right-aligned container for page action buttons, search, or filters. |

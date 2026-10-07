@@ -103,3 +103,43 @@ defineProps<{
 | `breadcrumbs` | Overrides the default breadcrumb navigation list. |
 | `title` | Overrides the main title and description block. |
 | `actions` | Right-aligned container for page action buttons, search, or filters. |
+
+### ⭐️`StatsGrid`⭐️
+
+A dynamic metrics grid component built on top of MUK's `MukMetricCard`. Designed for dashboard overview pages to showcase key performance indicators (KPIs), trends, and analytics at a glance.
+
+#### Features & Highlights
+- **Smart Metric Cards:** Leverages MUK metric primitives supporting titles, values, percentage changes, and trend periods.
+- **Trend Inversion (`invert`):** Automatically color-codes percentage changes (green/red) with full support for inverted logic (e.g., when a "+20%" increase in churn is bad/red, but an increase in revenue is good/green).
+- **Flexible Icon Slotting:** Supports both global item icon fallbacks (`#icon`) and dynamic per-card slots (`#icon-[id]`).
+- **Loading Skeleton Support:** Handles individual card loading states via prop forwarding.
+
+#### Type Definitions
+
+```ts
+export interface StatItem {
+  id?: string | number
+  title: string
+  value: string
+  change?: string | number
+  changePeriod?: string
+  invert?: boolean
+  loading?: boolean
+  [key: string]: any
+}
+```
+
+#### Props
+
+```ts
+defineProps<{
+   items: StatItem[]
+}>()
+```
+
+#### Slots
+
+| Slot Name | Scope| Description |
+| :--- | :--- | :--- |
+| `icon` | { item: StatItem }| Default fallback slot for rendering icons inside all metric cards. |
+| `icon-[id]` |-| Dynamic slot for rendering a specific icon for a metric item by its id.|

@@ -272,3 +272,36 @@ const exportData = () => {
 }
 </script>
 ```
+
+
+### ⭐️`DataWrapper`⭐️
+
+A state-management wrapper component designed to standardize data-fetching conditions (Loading, Error, Empty, and Content states). It wraps layout blocks or data components, handles smooth transition animations between states, and provides fallback MUK primitives with customizable scoped slots.
+
+#### Features & Highlights
+- **State Automation:** Smoothly transitions (`fade` effect with `out-in` mode) between loading skeletons, error states, empty states, and loaded content.
+- **Built-in Fallbacks:** Out-of-the-box integration with MUK primitives (`muk-skeleton`, `muk-error-state`, `muk-empty-state`, and retry button).
+- **Generic TypeScript Support:** Full generic typing (`generic="T"`) for scoped item lists passed directly to the default content slot.
+
+#### Props
+
+| Prop Name | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `loading` | `boolean` | `false` | Triggers the skeleton loading state. |
+| `error` | `boolean \| string \| null` | `null` | Triggers the error state with a built-in retry action. |
+| `items` | `T[] \| null` | `null` | Data payload array. If empty or null (when not loading/error), triggers the empty state. |
+
+#### Emits
+
+| Event | Payload | Description |
+| :--- | :--- | :--- |
+| `retry` | `-` | Emitted when the user clicks the "Try again" button in the default error state. |
+
+#### Slots
+
+| Slot Name | Scoped Props | Description |
+| :--- | :--- | :--- |
+| `default` | `{ items: T[] }` | Main content slot rendered when data is loaded and non-empty. |
+| `skeleton` | `-` | Custom skeleton UI during the loading state (fallback: `muk-skeleton`). |
+| `error` | `-` | Custom error UI (fallback: `muk-error-state` with retry button). |
+| `empty` | `-` | Custom empty state UI (fallback: `muk-empty-state`). |

@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 
-export type ActionsLayoutType = 'column' | 'row'
+import type { ActionsLayoutType } from '../types';
 
 export interface TableColumn {
    key: string

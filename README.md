@@ -178,3 +178,97 @@ defineProps<{
   items: ChartItem[]
 }>()
 ```
+
+### ⭐️`FilterBar`⭐️
+
+A flexible layout wrapper designed to organize search inputs, filter controls, reset triggers, and action buttons into a structured toolbar. Built on top of MUK's `muk-section`, it relies entirely on named slots to provide complete freedom over UI controls.
+
+#### Features & Highlights
+- **Slot-First Architecture:** Complete flexibility to use MUK UI primitives (`muk-input`, `muk-select`, `muk-button`) or standard HTML form controls.
+- **Conditional Rendering:** Internal wrappers automatically hide if corresponding slots are not provided.
+- **Structured Layout:** Pre-defined sections for search, filter groups, reset actions, and secondary toolbar actions.
+
+#### Slots
+
+| Slot Name | Description |
+| :--- | :--- |
+| `search` | Main search input field (e.g., search bar or search icon input). |
+| `filters` | Group of filtering controls (dropdowns, date pickers, multi-selects). |
+| `reset` | Reset trigger button or link to clear active filters. |
+| `actions` | Right-aligned action triggers (e.g., "Export", "Create", "Refresh"). |
+
+
+#### Basic Usage
+
+```vue
+<template>
+  <FilterBar>
+    <!-- Search Slot -->
+    <template #search>
+      <muk-input
+        v-model="searchQuery"
+        placeholder="Search records..."
+        icon="search"
+      />
+    </template>
+
+    <!-- Filters Group Slot -->
+    <template #filters>
+      <muk-select
+        v-model="selectedStatus"
+        :options="statusOptions"
+        placeholder="Status"
+      />
+      <muk-select
+        v-model="selectedRole"
+        :options="roleOptions"
+        placeholder="Role"
+      />
+    </template>
+
+    <!-- Reset Trigger Slot -->
+    <template #reset>
+      <muk-button variant="ghost" size="lg"  @click="resetFilters">
+        Reset
+      </muk-button>
+    </template>
+
+    <!-- Right Actions Slot -->
+    <template #actions>
+      <muk-button variant="primary" size="lg"  @click="exportData">
+        Export CSV
+      </muk-button>
+    </template>
+  </FilterBar>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { FilterBar } from 'vue-saas-kit'
+import { MukInput, MukSelect, MukButton } from 'modular-ui-kit-vue'
+
+const searchQuery = ref('')
+const selectedStatus = ref(null)
+const selectedRole = ref(null)
+
+const statusOptions = [
+  { label: 'Active', value: 'active' },
+  { label: 'Pending', value: 'pending' },
+]
+
+const roleOptions = [
+  { label: 'Admin', value: 'admin' },
+  { label: 'Member', value: 'member' },
+]
+
+const resetFilters = () => {
+  searchQuery.value = ''
+  selectedStatus.value = null
+  selectedRole.value = null
+}
+
+const exportData = () => {
+  // Export logic
+}
+</script>
+```

@@ -307,7 +307,7 @@ A state-management wrapper component designed to standardize data-fetching condi
 | `empty` | `-` | Custom empty state UI (fallback: `muk-empty-state`). |
 
 
-### ⭐️`TableSkeleton`⭐️
+### ⭐️`DataTableSkeleton`⭐️
 
 A structural loading placeholder that mimics table layouts during asynchronous data fetch operations. Built using `MukSkeleton`, it allows full control over the number of rows, columns, and action button placeholders.
 
@@ -330,10 +330,46 @@ A structural loading placeholder that mimics table layouts during asynchronous d
 ```vue
 <template>
   <!-- Table skeleton with 5 rows, 4 data columns, and 2 action buttons per row -->
-  <TableSkeleton :buttons="2" :columns="4" :rows="5" actions-type="row"/>
+  <data-table-skeleton  :buttons="2" :columns="4" :rows="5" actions-type="row"/>
 </template>
 
 <script setup lang="ts">
-import { TableSkeleton } from 'vue-saas-kit'
+import { DataTableSkeleton } from 'vue-saas-kit'
 </script>
 ```
+### ⭐️`DataTable`⭐️
+
+A feature-rich dynamic data table component built on top of MUK table styling primitives. It supports dynamic column definitions, scoped cell customization, explicit action column layouts, and a dedicated pagination wrapper slot.
+
+#### Features & Highlights
+- **Dynamic Cell Templating:** Custom cell rendering via dynamic scoped slots using column keys.
+- **Flexible Action Columns:** Built-in actions column with customizable layout directions (`column` or `row`).
+- **Pagination Slot Support:** Dedicated footer wrapper for rendering pagination controls directly below the table grid.
+- **MUK Styling:** Fully styled using native `muk-table-wrapper` and `muk-table` CSS modules.
+
+#### Type Definitions
+
+```ts
+export interface TableColumn {
+  key: string
+  label: string
+}
+```
+#### Props
+
+Prop Name | Type | Default | Description
+-- | -- | -- | --
+columns | TableColumn[] | [] | Array of column definitions (key and header label).
+items | Record<string, any>[] | [] | Array of data row objects.
+actionsType | 'column' \| 'row' | 'column' | Layout direction for elements inside the action column.
+showActions | boolean | false | Explicitly forces the rendering of the actions column even without slot usage.
+pagination | boolean | false | Enables the bottom pagination container wrapper.
+
+#### Slots
+
+Slot Name | Scoped Props | Description
+-- | -- | --
+cell-[key] | { item: Record<string, any>, value: any } | Dynamic scoped slot for custom cell formatting (e.g., #cell-status).
+actions | { item: Record<string, any> } | Scoped slot for row actions (e.g., Edit/Delete buttons).
+pagination | - | Container slot for pagination UI components (e.g., MukPagination).
+

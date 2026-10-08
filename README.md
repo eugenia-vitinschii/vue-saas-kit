@@ -143,3 +143,38 @@ defineProps<{
 | :--- | :--- | :--- |
 | `icon` | { item: StatItem }| Default fallback slot for rendering icons inside all metric cards. |
 | `icon-[id]` |-| Dynamic slot for rendering a specific icon for a metric item by its id.|
+
+
+### ⭐️`ChartsGrid`⭐️
+
+A responsive grid component designed to display multiple analytical charts side by side. Built on top of MUK's `MukChart` and integrated with Chart.js to handle loading states, empty states, and custom chart configurations effortlessly.
+
+#### Features & Highlights
+- **Multi-Chart Layout:** Renders an array of independent charts (line, bar, doughnut, pie, etc.) in a unified grid wrapper.
+- **MUK Chart Primitive Integration:** Automatically inherits native loading skeletons, headers, heights, and empty state fallbacks for every chart item.
+- **Chart.js Ecosystem:** Direct support for native Chart.js `type`, `data`, and `options` configurations.
+
+#### Type Definitions
+
+```ts
+import type { ChartData, ChartOptions, ChartType } from 'chart.js'
+
+export interface ChartItem {
+  id?: string | number
+  title?: string
+  loading?: boolean
+  emptyText?: string
+  height?: string
+  type?: ChartType
+  data: ChartData | null
+  options?: ChartOptions
+  [key: string]: any
+}
+```
+#### Props
+
+```ts
+defineProps<{
+  items: ChartItem[]
+}>()
+```

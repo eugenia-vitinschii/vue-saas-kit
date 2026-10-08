@@ -305,3 +305,35 @@ A state-management wrapper component designed to standardize data-fetching condi
 | `skeleton` | `-` | Custom skeleton UI during the loading state (fallback: `muk-skeleton`). |
 | `error` | `-` | Custom error UI (fallback: `muk-error-state` with retry button). |
 | `empty` | `-` | Custom empty state UI (fallback: `muk-empty-state`). |
+
+
+### ⭐️`TableSkeleton`⭐️
+
+A structural loading placeholder that mimics table layouts during asynchronous data fetch operations. Built using `MukSkeleton`, it allows full control over the number of rows, columns, and action button placeholders.
+
+#### Features & Highlights
+- **Configurable Grid:** Easily define grid dimensions using `rows` and `columns` props.
+- **Optional Action Placeholders:** Optional `buttons` prop to render action column skeletons in stacked (`column`) or inline (`row`) layouts.
+- **MUK Integration:** Uses `MukSkeleton` primitives and standard `muk-table` CSS classes for consistent visual styling across themes.
+
+#### Props
+
+| Prop Name | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `rows` | `number` | **Required** | Number of skeleton body rows to render. |
+| `columns` | `number` | **Required** | Total number of table columns. |
+| `buttons` | `number` | `0` | Number of action button skeletons in the action column. If `0`, no action column is rendered. |
+| `actionsType` | `'column' \| 'row'` | `'column'` | Layout direction for action button skeletons. |
+
+#### Basic Usage
+
+```vue
+<template>
+  <!-- Table skeleton with 5 rows, 4 data columns, and 2 action buttons per row -->
+  <TableSkeleton :buttons="2" :columns="4" :rows="5" actions-type="row"/>
+</template>
+
+<script setup lang="ts">
+import { TableSkeleton } from 'vue-saas-kit'
+</script>
+```

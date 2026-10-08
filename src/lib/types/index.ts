@@ -16,3 +16,6 @@ export interface UserProfile{
    avatar?: string
    role?: string
 }
+
+
+export type ActionsLayoutType = 'column' | 'row'

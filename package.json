@@ -1,6 +1,6 @@
 {
   "name": "vue-saas-kit",
-  "version": "0.1.0-beta.2",
+  "version": "1.0.0",
   "type": "module",
   "description": "Specialized Vue 3 SaaS dashboard UI kit built on top of modular-ui-kit-vue",
   "main": "./dist/vue-saas-kit.umd.js",

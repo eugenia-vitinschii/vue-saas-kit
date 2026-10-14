@@ -188,15 +188,26 @@ A flexible layout wrapper designed to organize search inputs, filter controls, r
 - **Conditional Rendering:** Internal wrappers automatically hide if corresponding slots are not provided.
 - **Structured Layout:** Pre-defined sections for search, filter groups, reset actions, and secondary toolbar actions.
 
+#### Props
+| Props Name | Type | Description |
+| :--- | :--- | :--- |
+| `showReset`|boolean,true | Toggles the visibility of the default reset button when no custom #reset slot is provided.|
+
+#### Emits
+
+| Event | Payload | Description |
+| :--- | :--- | :--- |
+| `reset` | `-` | Emitted when the reset trigger button is clicked.|
+
 #### Slots
 
 | Slot Name | Description |
 | :--- | :--- |
+| `chips`| Top slot for active filter chips/tags display.|
 | `search` | Main search input field (e.g., search bar or search icon input). |
 | `filters` | Group of filtering controls (dropdowns, date pickers, multi-selects). |
 | `reset` | Reset trigger button or link to clear active filters. |
 | `actions` | Right-aligned action triggers (e.g., "Export", "Create", "Refresh"). |
-
 
 #### Basic Usage
 
@@ -305,7 +316,7 @@ A state-management wrapper component designed to standardize data-fetching condi
 | `skeleton` | `-` | Custom skeleton UI during the loading state (fallback: `muk-skeleton`). |
 | `error` | `-` | Custom error UI (fallback: `muk-error-state` with retry button). |
 | `empty` | `-` | Custom empty state UI (fallback: `muk-empty-state`). |
-
+| `pagination`| `-` | Custom pagination |
 
 ### ⭐️`DataTableSkeleton`⭐️
 

@@ -1,11 +1,11 @@
 <template>
-<div class="vsk-filter-bar muk-section">
-   <div v-if="$slots.chips" class="vsk-filter-bar__header">
+<div class="vsk-filter-bar">
+   <div v-if="$slots.chips" class="vsk-filter-bar__header muk-section">
       <div class="vsk-filter-bar__chips">
          <slot name="chips"></slot>
       </div>
    </div>
-   <div class="vsk-filter-bar__filters">
+   <div class="vsk-filter-bar__filters muk-section">
       <div v-if="$slots.search" class="vsk-filter-bar__search">
          <slot name="search"></slot>
       </div>

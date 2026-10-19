@@ -1,10 +1,12 @@
 <template>
 <div class="vsk-filter-bar">
+   <Transition name="fade">
    <div v-if="$slots.chips" class="vsk-filter-bar__header muk-section">
       <div class="vsk-filter-bar__chips">
          <slot name="chips"></slot>
       </div>
    </div>
+   </Transition>
    <div class="vsk-filter-bar__filters muk-section">
       <div v-if="$slots.search" class="vsk-filter-bar__search">
          <slot name="search"></slot>
